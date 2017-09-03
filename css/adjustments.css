@@ -48,13 +48,13 @@ font-family: 'Cinzel Decorative', cursive;
 
 .pick-icon{
     margin: 5px;
-    width: 133px;
-    height: 75px;
+    width: 12vw;
+    height: calc(12vw * 0.564);
     background-color: #333;
     display: inline-block;
     vertical-align: middle;
     background-position:center;
-    background-size: 133px 75px;
+    background-size: 12vw calc(12vw * 0.564);
     border: 2px solid #666;
     box-shadow: 0px 0px 10px -2px black;
 }
@@ -120,20 +120,64 @@ font-family: 'Cinzel Decorative', cursive;
     filter: greyscale(100%);
 }
 
-@media(max-width : 500px){
-    .ability-divider{
-        margin: 10px;
-    }
-}
 @media(orientation: landscape) and (max-width : 1199px){
+    #selection{
+        width:80%;
+    }
+    #suggestion{
+        width:20%;
+    }
     
-    #selection,#suggestion{
-        width: 100%;
+    #picks{
+        height: 14vw;
+        line-height: 14vw;
+    }
+    
+    .pick-icon{
+        margin: 1px;
+        width: 15vw;
+        height: calc(15vw * 0.564);
+        background-size: 15vw calc(15vw * 0.564);
+    }
+    
+    #hero-table{
+        height: calc(100% - 14vw);
     }
 }
 
-@media(orientation: portrait) and (max-width : 1199px){    
+@media(orientation: portrait) and (max-width : 1199px){
     #selection,#suggestion{
         width: 100%;
-    }    
+    }
+    
+    #picks{
+        height: 16vw;
+        line-height: 16vw;
+    }
+    
+    #selection{
+        height: calc(100% - 16vw);
+    }
+    
+    #suggestion{
+        height: 16vw;
+    }
+
+    .pick-icon{
+        margin: 1px;
+        width: 18vw;
+        height: calc(18vw * 0.564);
+        background-size: 18vw calc(18vw * 0.564);
+    }
+    
+    #hero-table{
+        height: calc(100% - 18vw);
+    }
+}
+
+@media(max-width : 500px){
+
+    .ability-divider{
+        margin: 10px;
+    }
 }
