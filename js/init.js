@@ -99,6 +99,7 @@ $(document).ready(function(){
                     picks.splice(pos,1);
                     counters.splice(counters.indexOf(comps),1);
                     drawIcons();
+                    calculateCounters();
                     $("#"+obj.name).removeClass("selected");
                 }
             });
@@ -107,37 +108,70 @@ $(document).ready(function(){
             console.log("failure");
         }
     });
+    $('#suggestion-scroller').bind("mousewheel",function(e) {
+        if($('#suggestion').width() > $('#suggestion').height()){
+            
+            this.scrollLeft -= (e.originalEvent.wheelDelta * 0.3);
+            e.preventDefault();
+        }
+   });
 });
 
 function calculateCounters(el,comps){
-    $(el).data("comps",comps);
-    counters.push(comps);
+    if(el){
+        $(el).data("comps",comps);
+        counters.push(comps);
+    }
     compTotals = [];
-    for(var i = 0; i < counters[0].length;i++){
-        compTotals.push({
-            heroName : counters[0][i].heroName,
-            advantage : counters[0][i].advantage,
-            winRate : counters[0][i].winRate,
-            matches : counters[0][i].matches
-        });
-    }
-    for(var i = 0; i < counters.length; i++){
-        for(var j = 0; j < counters[i].length;j++){
-            compTotals[j].advantage += counters[i][j].advantage;
-            //compTotals[j].advantage = parseFloat(compTotals[j].advantage).toFixed(2);
-            compTotals[j].winRate += counters[i][j].winRate;
-            //compTotals[j].winRate = parseFloat(compTotals[j].winRate).toFixed(2);
-            compTotals[j].matches += counters[i][j].matches;
-            //compTotals[j].matches = parseInt(compTotals[j].matches);
+    var container = $("#suggestion-container");
+    $(container).empty();
+        if(counters[0]){
+        for(var i = 0; i < counters[0].length;i++){
+            compTotals.push({
+                heroName : counters[0][i].heroName,
+                advantage : counters[0][i].advantage,
+                winRate : counters[0][i].winRate,
+                matches : counters[0][i].matches
+            });
         }
-    }
-    compTotals.sort(function(a,b){
-        return a.advantage - b.advantage;
-    });
-    compTotals.reverse();
-    console.log("----COUNTER SET");
-    for(var i = 0; i < 10; i++){
-        console.log(compTotals[i].heroName + ", " + compTotals[i].advantage);
+        for(var i = 0; i < counters.length; i++){
+            for(var j = 0; j < counters[i].length;j++){
+                compTotals[j].advantage += counters[i][j].advantage;
+                //compTotals[j].advantage = parseFloat(compTotals[j].advantage).toFixed(2);
+                compTotals[j].winRate += counters[i][j].winRate;
+                //compTotals[j].winRate = parseFloat(compTotals[j].winRate).toFixed(2);
+                compTotals[j].matches += counters[i][j].matches;
+                //compTotals[j].matches = parseInt(compTotals[j].matches);
+            }
+        }
+        compTotals.sort(function(a,b){
+            return a.advantage - b.advantage;
+        });
+        compTotals.reverse();
+        console.log("----COUNTER SET----");
+        $(container).empty();
+        for(var i = 0; i < 10; i++){
+            var valid = true;
+            $.each(picks,function(index,obj){
+                if(compTotals[i].heroName === obj.name.toLowerCase())
+                    valid = false;
+            });
+            if(valid){
+                //console.log(compTotals[i].heroName + ", " + compTotals[i].advantage);
+                var item = $("<div />",{class:"suggestion-list-item"});
+                var iconImg;
+                $.each(heroes,function(index,obj){
+                    if(compTotals[i].heroName === obj.name.toLowerCase())
+                        iconImg = obj.urlFullPortrait;
+                });
+                var itemIcon = $("<div />",{class:"suggestion-icon"});
+                $(itemIcon).css({
+                    "background-image":"url("+iconImg+")"
+                });
+                $(item).append(itemIcon);
+                $(container).append(item);
+            }
+        }
     }
 }
 

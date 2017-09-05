@@ -6,7 +6,6 @@ font-family: 'Cinzel Decorative', cursive;
     background-image: url(../resources/seigaiha.png);
     background-color: #666;
     background-repeat : repeat;
-
     position: absolute;
     top: 0px;
     left: 0px;
@@ -27,11 +26,20 @@ font-family: 'Cinzel Decorative', cursive;
 #suggestion{
     width: 400px;
     background-color: #333;
-    font-size: 24px;
     background: -webkit-linear-gradient(rgba(34, 34, 34, 1), rgba(51, 51, 51, 1)); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(rgba(34, 34, 34, 1), rgba(51, 51, 51, 1)); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient(rgba(34, 34, 34, 1), rgba(51, 51, 51, 1)); /* For Firefox 3.6 to 15 */
     background: linear-gradient(rgba(34, 34, 34, 1), rgba(51, 51, 51, 1));
+}
+
+#suggestion-scroller{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: -20px;
+    bottom : 0;
+    overflow-x: hidden;
+    overflow-y:scroll;
 }
 
 #selection{
@@ -72,6 +80,7 @@ font-family: 'Cinzel Decorative', cursive;
 
 .ability-divider{
     margin: 20px;
+    margin-top:0px;
 }
 
 #preview-selector{
@@ -124,6 +133,26 @@ font-family: 'Cinzel Decorative', cursive;
     filter: greyscale(100%);
 }
 
+#suggestion-container{
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+
+.suggestion-list-item{
+    width:calc(400px - 4px);
+    height:100px;
+    margin: 2px;
+    background-color: #454545;
+    display: inline-block;
+}
+
+.suggestion-icon{
+    height:100px;
+    width: calc(100px * 1.774);
+    background-size: calc(100px * 1.774) 100px ;
+}
+
 @media(orientation: landscape) and (max-width : 1199px){
     #selection{
         width:80%;
@@ -135,6 +164,17 @@ font-family: 'Cinzel Decorative', cursive;
     #picks{
         height: 14vw;
         line-height: 14vw;
+    }
+    
+    .suggestion-list-item{
+        width:calc(20vw - 4px);
+        height: calc(20vw * 0.564);
+    }
+    
+    .suggestion-icon{
+        height:100%;
+        width: 100%;
+        background-size: 100% 100%;
     }
     
     .pick-icon{
@@ -166,6 +206,27 @@ font-family: 'Cinzel Decorative', cursive;
     #suggestion{
         height: 16vw;
     }
+    
+    .suggestion-list-item{
+        width:calc(16vw * 1.774);
+        height: calc(16vw - 4px);
+    }
+    
+    .suggestion-icon{
+        height:100%;
+        width: 100%;
+        background-size: 100% 100%;
+    }
+    
+    #suggestion-scroller{
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0px;
+        bottom : -20px;
+        overflow-y: hidden;
+        overflow-x:scroll;
+    }
 
     .pick-icon{
         margin: 1px;
@@ -176,6 +237,12 @@ font-family: 'Cinzel Decorative', cursive;
     
     #hero-table{
         height: calc(100% - 18vw);
+    }
+    
+    #suggestion-container{
+        white-space: nowrap;
+        height: 100%;
+        width: auto;
     }
 }
 
