@@ -93,7 +93,9 @@ $(document).ready(function(){
                     var comps = $(this).data("comps");
                     $(this).removeData("obj");
                     $(this).removeData("pos");
-                    $(this).css({"background-image":"none"});
+                    $(this).css({
+                        "background-image":"none"
+                    });
                     picks.splice(pos,1);
                     counters.splice(counters.indexOf(comps),1);
                     drawIcons();
@@ -133,6 +135,7 @@ function calculateCounters(el,comps){
         return a.advantage - b.advantage;
     });
     compTotals.reverse();
+    console.log("----COUNTER SET");
     for(var i = 0; i < 10; i++){
         console.log(compTotals[i].heroName + ", " + compTotals[i].advantage);
     }

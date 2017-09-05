@@ -28,6 +28,10 @@ font-family: 'Cinzel Decorative', cursive;
     width: 400px;
     background-color: #333;
     font-size: 24px;
+    background: -webkit-linear-gradient(rgba(34, 34, 34, 1), rgba(51, 51, 51, 1)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(rgba(34, 34, 34, 1), rgba(51, 51, 51, 1)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(rgba(34, 34, 34, 1), rgba(51, 51, 51, 1)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(rgba(34, 34, 34, 1), rgba(51, 51, 51, 1));
 }
 
 #selection{
@@ -135,9 +139,9 @@ font-family: 'Cinzel Decorative', cursive;
     
     .pick-icon{
         margin: 1px;
-        width: 15vw;
-        height: calc(15vw * 0.564);
-        background-size: 15vw calc(15vw * 0.564);
+        width: 14.5vw;
+        height: calc(14.5vw * 0.564);
+        background-size: 14.5vw calc(14.5vw * 0.564);
     }
     
     #hero-table{
