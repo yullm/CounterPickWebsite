@@ -34,7 +34,7 @@ font-family: 'Cinzel Decorative', cursive;
 
 #suggestion-scroller{
     position: absolute;
-    top: 20px;
+    top: 40px;
     left: 0;
     right: -20px;
     bottom : 0;
