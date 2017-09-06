@@ -11,11 +11,12 @@ $(document).ready(function(){
         success:function(response){
             var obj = JSON.parse(response);
             heroes = obj;
-            var str = document.getElementById("str");
-            var agi = document.getElementById("agi");
-            var int = document.getElementById("int");
+            var str = document.getElementById("str-portraits");
+            var agi = document.getElementById("agi-portraits");
+            var int = document.getElementById("int-portraits");
             $(wrapper).hide();
             for(var i = 0; i < obj.length; i++){
+                console.log(obj[i].name);
                 var wrapper; 
                 obj[i].urlLargePortrait = obj[i].urlLargePortrait.replace("}","");
                 if(obj[i].primaryAttribute === "agility")
@@ -103,6 +104,7 @@ $(document).ready(function(){
                     $("#"+obj.name).removeClass("selected");
                 }
             });
+            resize();
         },
         error:function(){
             console.log("failure");
@@ -115,6 +117,7 @@ $(document).ready(function(){
             e.preventDefault();
         }
    });
+   
 });
 
 function calculateCounters(el,comps){
@@ -148,7 +151,6 @@ function calculateCounters(el,comps){
             return a.advantage - b.advantage;
         });
         compTotals.reverse();
-        console.log("----COUNTER SET----");
         $(container).empty();
         for(var i = 0; i < 10; i++){
             var valid = true;
@@ -190,6 +192,29 @@ function drawIcons(){
             $(icon).css({"background-image":"none"});
         }
     }
+}
+
+$(window).resize(resize);
+
+function resize(){
+    $.each($(".ability-divider"),function(index,value){
+        //console.log($(value).height() + " " + index);
+        $(this).find(".ability-title").css({
+            "height": "0px"
+        });
+        $(this).find(".ability-title").css({
+            "height":$(this).height()
+        });
+        var text = $(this).find(".abitity-text");
+        if($(this).height() < 500){
+            $(text).attr("y",$(this).height()/2);
+            $(text).attr("transform","rotate(-90,"+$(text).attr("x")+","+$(this).height()/2+")");
+        }
+        else{
+            $(text).attr("y",105);
+            $(text).attr("transform","rotate(-90,"+$(text).attr("x")+","+105+")");
+        }
+    });
 }
 
 
