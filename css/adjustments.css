@@ -34,7 +34,7 @@ font-family: 'Cinzel Decorative', cursive;
 
 #suggestion-scroller{
     position: absolute;
-    top: 0;
+    top: 20px;
     left: 0;
     right: -20px;
     bottom : 0;
@@ -45,6 +45,10 @@ font-family: 'Cinzel Decorative', cursive;
 #selection{
     width: calc(100% - 400px);
     height: 100%;
+    background: -webkit-linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0));
 }
 
 #picks{
@@ -52,10 +56,6 @@ font-family: 'Cinzel Decorative', cursive;
     height: 10vw;
     line-height: 10vw;
     text-align: center;
-    background: -webkit-linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0)); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0)); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0)); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0));
 }
 
 .pick-icon{
@@ -87,10 +87,15 @@ font-family: 'Cinzel Decorative', cursive;
     margin-top:0px;
 }
 
-.abitity-text{
-    font-size: 28px;
-    fill: white;
+.ability-text{
+    font-size: 24px;
+    fill: #ccc;
     font-family: 'Cinzel Decorative', cursive;
+}
+
+.ability-line{
+    stroke:#ccc;
+    stroke-width:2;
 }
 
 .ability-title{
@@ -288,20 +293,6 @@ font-family: 'Cinzel Decorative', cursive;
         width: auto;
     }
 
-}
-
-@media(orientation: portrait) and (max-width : 700px){
-    .portraits{
-        width: 100%;
-    }
-    
-    .ability-icon{
-        display: inline-block;
-    }
-    
-    .ability-title{
-        display: none;
-    }
 }
 
 @media(max-width : 500px){

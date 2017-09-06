@@ -197,7 +197,8 @@ function drawIcons(){
 $(window).resize(resize);
 
 function resize(){
-    $.each($(".ability-divider"),function(index,value){
+    var firstHeight = $(".ability-divider").first().height();
+    $.each($(".ability-divider"),function(){
         //console.log($(value).height() + " " + index);
         $(this).find(".ability-title").css({
             "height": "0px"
@@ -205,15 +206,20 @@ function resize(){
         $(this).find(".ability-title").css({
             "height":$(this).height()
         });
-        var text = $(this).find(".abitity-text");
-        if($(this).height() < 500){
-            $(text).attr("y",$(this).height()/2);
-            $(text).attr("transform","rotate(-90,"+$(text).attr("x")+","+$(this).height()/2+")");
+        var text = $(this).find(".ability-text");
+        var icon = $(this).find("image");
+        var textWidth = text[0].getBBox().width/2 + 4;
+        if(firstHeight < 500){
+            $(text).attr("y",$(this).height()/2 - 10);
+            $(text).attr("transform","rotate(-90,"+$(text).attr("x")+","+($(this).height()/2 -10)+")");
+            $(icon).attr("y",$(this).height()/2 + textWidth - 10);
         }
         else{
-            $(text).attr("y",105);
-            $(text).attr("transform","rotate(-90,"+$(text).attr("x")+","+105+")");
+            $(text).attr("y",textWidth);
+            $(text).attr("transform","rotate(-90,"+$(text).attr("x")+","+textWidth+")");
+            $(icon).attr("y",textWidth * 2);
         }
+        $(this).find("line").attr("y2",$(this).height() - 5);
     });
 }
 
