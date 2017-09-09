@@ -9,7 +9,8 @@
         <script src="js/resize.js"></script>
         <link rel="stylesheet" href="css/reset.css" />
         <link rel="stylesheet" href="css/adjustments.css" />
-        <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC|Cinzel+Decorative" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Cinzel|Cinzel+Decorative" rel="stylesheet">
+        <script src="https://use.fontawesome.com/21dab086eb.js"></script>
     </head>
     <body>
         <div id="wrapper">
@@ -20,7 +21,6 @@
                     <img id="fx-spark2" src="resources/fx/sparks2.png" alt="spark2"/>
                 </div>
             <div id="selection">
-                
                 <div id="picks">
                     <div id="pick-icon-0" class="pick-icon"></div>
                     <div id="pick-icon-1" class="pick-icon"></div>
@@ -64,11 +64,31 @@
                     </div>
                 </div>
             </div>
-                <div id="suggestion">
-                    <div id="suggestion-scroller">
-                        <div id="suggestion-container"></div>
-                    </div>       
+            <div id="suggestion">
+                <div id="logo-bar">
+                    <a href="https://www.dotabuff.com" target="_blank">
+                        <div id="buff-bar" class="logo-parent">
+                            <div class="logo-text">Powered By:</div>
+                            <div class="logo-text">Dotabuff</div>
+                        </div>
+                    </a>
+                    <div id="menu-prompt-bar">
+                        <div id="menu-prompt-title">Settings & Info:</div>
+                        <i id="menu-prompt-but" class="fa fa-bars" aria-hidden="true"></i>
+                    </div>
                 </div>
+                <div id="suggestion-scroller">
+                    <div id="suggestion-container"></div>
+                </div>       
+            </div>
+            <div id="tooltip"></div>
+            <i id="floating-menu-but" class="fa fa-bars"></i>
+            <div id="menu">
+                <div id="menu-header">
+                    <i id="menu-close-but" class="fa fa-times"></i>
+                </div>
+                <div id="menu-content"></div>
+            </div>
         </div>
     </body>
 

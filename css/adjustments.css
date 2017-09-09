@@ -1,5 +1,5 @@
 /*
-font-family: 'Alegreya Sans SC', sans-serif;
+font-family: 'Cinzel', serif;
 font-family: 'Cinzel Decorative', cursive;
 */
 #wrapper{
@@ -13,6 +13,7 @@ font-family: 'Cinzel Decorative', cursive;
     bottom: 0px;
     font-size: 0px;
     text-align: left;
+    overflow: hidden;
 }
 
 #selection,#suggestion{
@@ -25,11 +26,73 @@ font-family: 'Cinzel Decorative', cursive;
 
 #suggestion{
     width: 400px;
-    background-color: #333;
-    background: -webkit-linear-gradient(rgba(34, 34, 34, 1), rgba(51, 51, 51, 1)); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(rgba(34, 34, 34, 1), rgba(51, 51, 51, 1)); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(rgba(34, 34, 34, 1), rgba(51, 51, 51, 1)); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(rgba(34, 34, 34, 1), rgba(51, 51, 51, 1));
+    background-color: rgb(9, 56, 64);
+    background: -webkit-linear-gradient(rgb(9, 56, 64),rgb(86, 51, 51)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(rgb(9, 56, 64),rgb(86, 51, 51)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(rgb(9, 56, 64),rgb(86, 51, 51)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(rgb(9, 56, 64),rgb(86, 51, 51));
+    box-shadow: 0px 0px 10px -2px black;
+}
+
+#logo-bar{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 40px;
+    overflow: hidden;
+}
+
+.logo-parent{
+    height: 40px;
+    width: 180px;
+    display: inline-block;
+    line-height: 40px;
+    text-align: center;
+    vertical-align: top;
+}
+
+#buff-bar{
+    background-color: #ED3B1C;
+}
+
+.logo-text{
+    font-family: arial, sans-serif;
+    font-size: 20px;
+    color: white;
+    opacity: 0;
+    text-transform: uppercase;
+}
+
+#menu-prompt-bar{
+    height: 40px;
+    width: 220px;
+    display: inline-block;
+    line-height: 40px;
+    text-align: right;
+    vertical-align: top;
+}
+
+#menu-prompt-title{
+    font-size: 18px;
+    padding-right: 5px;
+    color: #ccc;
+    vertical-align: top;
+    display: inline-block;
+    text-transform: uppercase;
+    font-family: 'Cinzel Decorative', cursive;
+    cursor : default;
+}
+
+#menu-prompt-but{
+    font-size: 36px;
+    width: 40px;
+    height: 38px;
+    padding-top: 2px;
+    display: inline-block;
+    color: #ccc;
+    text-align: center;
+    cursor : pointer;
 }
 
 #suggestion-scroller{
@@ -45,10 +108,10 @@ font-family: 'Cinzel Decorative', cursive;
 #selection{
     width: calc(100% - 400px);
     height: 100%;
-    background: -webkit-linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0)); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0)); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0)); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+    background: -webkit-linear-gradient(rgba(4, 20, 37, 0.5), rgba(193, 165, 86, 0.13)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(rgba(4, 20, 37, 0.5), rgba(193, 165, 86, 0.13)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(rgba(4, 20, 37, 0.5), rgba(193, 165, 86, 0.13)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(rgba(4, 20, 37, 0.5), rgba(193, 165, 86, 0.13))
 }
 
 #bg-fx{
@@ -100,13 +163,14 @@ font-family: 'Cinzel Decorative', cursive;
     margin: 5px;
     width: 12vw;
     height: calc(12vw * 0.564);
-    background-color: #2a2a2a;
+    background-color: #232b31;
     display: inline-block;
     vertical-align: middle;
     background-position:center;
     background-size: 12vw calc(12vw * 0.564);
-    border: 2px solid #666;
+    border: 2px solid #506b75;
     box-shadow: 0px 0px 10px -2px black;
+    cursor : pointer;
 }
 
 #hero-table{
@@ -129,6 +193,7 @@ font-family: 'Cinzel Decorative', cursive;
     font-size: 24px;
     fill: #ccc;
     font-family: 'Cinzel Decorative', cursive;
+    cursor : default;
 }
 
 .ability-line{
@@ -177,6 +242,7 @@ font-family: 'Cinzel Decorative', cursive;
     background-position:center;
     background-size: 138px 184px;
     box-shadow: 0px 0px 50px -5px black;
+    cursor : pointer;
 }
 
 #preview-text{
@@ -190,6 +256,7 @@ font-family: 'Cinzel Decorative', cursive;
     color: white;
     font-family: 'Cinzel Decorative', cursive;
     background-color: rgba(0,0,0,0.3);
+    cursor : pointer;
 }
 
 .hero-portrait{
@@ -228,8 +295,7 @@ font-family: 'Cinzel Decorative', cursive;
     width:calc(400px - 4px);
     height:100px;
     margin: 1px;
-    background-color: #454545;
-    border: 1px solid #888888;
+    border: 1px solid #444;
     display: inline-block;
 }
 
@@ -237,6 +303,130 @@ font-family: 'Cinzel Decorative', cursive;
     height:100px;
     width: calc(100px * 1.774);
     background-size: calc(100px * 1.774) 100px ;
+    line-height: 100px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.suggestion-stats{
+    width: 218px;
+    height: 100%;
+    display: inline-block;
+    text-align: center;
+}
+
+.stat{
+    position: relative;
+    height: 30px;
+    width: 95%;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    display: inline-block;
+    text-align: left;
+    font-family: 'Cinzel', serif;
+ }
+ 
+ .rank-bar{
+     position: absolute;
+     top: 26px;
+     bottom: 0;
+     left : 0;
+     background-color: #ccc;
+ }
+ 
+ .stat-title{
+    position: absolute;
+    left: 0;
+    width:60%;
+    height:100%;
+    display:inline-block;
+    font-size: 20px;
+    color: #ccc;
+    line-height: 30px;
+    vertical-align: top;
+    cursor : default;
+ }
+ 
+ .stat-value{
+    position: absolute;
+    left: 60%;
+    width:40%;
+    height:100%;
+    display:inline-block;
+    font-size: 20px;
+    color: #ccc;
+    line-height: 30px;
+    vertical-align: top;
+    text-align: right;
+    cursor : default;
+ }
+
+.suggestion-icon-hover{
+    color: white;
+    font-size: 5vw;
+    vertical-align: middle;
+    text-align: center;
+    opacity: 0;
+    font-family: 'Cinzel Decorative', cursive;
+    cursor : default;
+}
+
+#menu{
+    position: absolute;
+    top:0;
+    bottom: 0;
+    right: -400px;
+    width: 400px;
+    background-color: rgb(9, 56, 64);
+    background: -webkit-linear-gradient(rgb(9, 56, 64),rgb(86, 51, 51)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(rgb(9, 56, 64),rgb(86, 51, 51)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(rgb(9, 56, 64),rgb(86, 51, 51)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(rgb(9, 56, 64),rgb(86, 51, 51));
+    box-shadow: 0px 0px 10px -2px black;
+    display: none;
+    z-index: 10;
+}
+
+#menu-header{
+    text-align: right;
+}
+
+#menu-close-but{
+    font-size: 36px;
+    width: 40px;
+    height: 38px;
+    padding-top: 2px;
+    display: inline-block;
+    color: #ccc;
+    text-align: center;
+    cursor: pointer;
+}
+
+#floating-menu-but{
+    position: absolute;
+    color: #ccc;
+    top: 10px;
+    right: 10px;
+    font-size: 36px;
+    opacity: 0.8;
+    display: none;
+    cursor: pointer;
+}
+
+#tooltip{
+    position:absolute;
+    width: 275px;
+    height: 40px;
+    border: 1px solid #527d5e;
+    background-color: #283843;
+    font-size : 16px;
+    color: #ccc;
+    line-height: 20px;
+    text-align: center;
+    border-radius: 5px;
+    padding: 2px;
+    box-shadow: 0px 0px 10px -2px black;
+    font-family: 'Cinzel', serif;
 }
 
 @media(orientation: landscape) and (max-width : 1199px){
@@ -252,17 +442,42 @@ font-family: 'Cinzel Decorative', cursive;
         line-height: 14vw;
     }
     
+    #buff-bar{
+        width: calc(20vw - 40px);
+    }
+    
+    .logo-text{
+        font-size: 1.8vw;
+    }
+    
+    #menu-prompt-title{
+        display: none;
+    }
+    
+    #menu-prompt-bar{
+        width: 40px;
+    }
+    
     .suggestion-list-item{
         width:calc(20vw - 4px);
         height: calc(20vw * 0.564);
+    }
+    
+    .suggestion-stats{
+        display: none;
     }
     
     .suggestion-icon{
         height:100%;
         width: 100%;
         background-size: 100% 100%;
+        line-height: calc(20vw * 0.564);
     }
     
+    .suggestion-icon-hover:hover{
+        opacity: 1;
+    }
+       
     .pick-icon{
         margin: 1px;
         width: 14.5vw;
@@ -273,6 +488,7 @@ font-family: 'Cinzel Decorative', cursive;
     #hero-table{
         height: calc(100% - 14vw);
     }
+    
 }
 
 @media(orientation: portrait) and (max-width : 1199px){
@@ -298,10 +514,23 @@ font-family: 'Cinzel Decorative', cursive;
         height: calc(16vw - 4px);
     }
     
+    .suggestion-stats{
+        display: none;
+    }
+    
     .suggestion-icon{
         height:100%;
         width: 100%;
         background-size: 100% 100%;
+        line-height: 16vw;
+    }
+    
+    .suggestion-icon-hover:hover{
+        opacity: 1;
+    }
+    
+    #logo-bar{
+        display: none;
     }
     
     #suggestion-scroller{
@@ -330,6 +559,10 @@ font-family: 'Cinzel Decorative', cursive;
         height: 100%;
         width: auto;
     }
+    
+    #floating-menu-but{
+        display: block;
+    }
 
 }
 
@@ -337,5 +570,10 @@ font-family: 'Cinzel Decorative', cursive;
 
     .ability-divider{
         margin: 10px;
+    }
+    
+    #menu{
+        right: -100vw;
+        width: 100vw;
     }
 }
