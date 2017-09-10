@@ -402,6 +402,38 @@ font-family: 'Cinzel Decorative', cursive;
     cursor: pointer;
 }
 
+#menu-content{
+    position: absolute;
+    top: 40px;
+    bottom:0;
+    left: 0;
+    right: -20px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.menu-title{
+    font-size: 24px;
+    color: #ccc;
+    font-family: 'Cinzel Decorative', cursive;
+    padding: 10px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #ccc;
+}
+
+.menu-text{
+    font-size: 20px;
+    color : #ccc;
+    font-family: 'Cinzel', serif;
+    margin: 10px;
+    margin-left: 20px;
+}
+
+.menu-text a{
+    color: #ccc;
+    text-decoration: none;
+}
+
 #floating-menu-but{
     position: absolute;
     color: #ccc;
