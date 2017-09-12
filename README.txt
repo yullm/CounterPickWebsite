@@ -8,6 +8,6 @@ The application uses php for socket connection to the application's server. The 
 
 The application itself is an example of responsive interface design and of a dynamic single page application.
 
-Check out Meglofriend at www.meglobot.com and twitter.com/meglofriend
+Check out Meglofriend at www.meglobot.com and www.twitter.com/meglofriend
 
 
