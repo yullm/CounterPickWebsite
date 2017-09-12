@@ -72,7 +72,7 @@ $(document).ready(function(){
                         $.ajax({
                             method:"GET",
                             url:"connect.php",
-                            data:{opMessage:JSON.stringify({opcode:2,body:obj.name.toLowerCase()})},
+                            data:{opMessage:JSON.stringify({opcode:2,body:obj.name})},
                             success:function(response){
                                var comps = JSON.parse(response);
                                calculateCounters(icon,comps);
