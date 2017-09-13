@@ -1,6 +1,6 @@
 # Meglofriend's Dota 2 Counter Pick Front End Website.
 
-### For use, visit: Meglobot.com/CounterPick
+### For use, visit: www.meglobot.com/CounterPick
 
 ## Overview
 

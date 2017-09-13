@@ -1,3 +1,7 @@
+/*
+ *  Meglofriend's Dota 2 Counter Pick App || Init.js
+ */
+// Global variable init
 var heroes;
 var picks = [];
 var comparisons = [];
@@ -10,62 +14,78 @@ var matchesTip = "Total number of match comparisons against the hero.";
 $(document).ready(function(){
     $("#preview-selector").hide();
     $("#hero-table").hide();
+    //ajax call to retrieve initial list of heroes
     $.ajax({
         method:"GET",
         url:"connect.php",
         data: {opMessage:JSON.stringify({opcode:0,body:""})},
         success:function(response){
+            //Converting response to object
             var obj = JSON.parse(response);
             heroes = obj;
+            //Getting the elements for hold the hero portraits based off primary attribute
             var str = document.getElementById("str-portraits");
             var agi = document.getElementById("agi-portraits");
             var int = document.getElementById("int-portraits");
+            //Setup for each hero
             for(var i = 0; i < obj.length; i++){
                 var wrapper; 
+                //cleaning up response syntax | Look into on server side
                 obj[i].urlLargePortrait = obj[i].urlLargePortrait.replace("}","");
+                //Assign container based off primary attribute
                 if(obj[i].primaryAttribute === "agility")
                     wrapper = agi;
                 if(obj[i].primaryAttribute === "strength")
                     wrapper = str;
                 if(obj[i].primaryAttribute === "intelligence")
                     wrapper = int;
+                //Create new div for hero portrait
                 var portrait = $("<div />",{id:obj[i].name,class:"hero-portrait"});
                 $(portrait).css({
                     "background-image": "url("+obj[i].urlVertPortrait+")"
                 });
+                //Add portrait to dom and assign data to hold hero info
                 $(wrapper).append(portrait);
                 $(portrait).data("obj",obj[i]);
+                //Creates a highlight for when a hero portrait is moused over
                 $(portrait).on("mouseenter",function(){
                     var sel = $("#preview-selector");
                     $(sel).show();
+                    //assign the hero to preview-selector
                     $(sel).data("obj",$(this).data("obj"));
-                    var xOffset = 0;// use for edge offsets
+                    var xOffset = 0;// use for edge offsets | Not yet set up.
                     var yOffset = 0;
-                    $("#preview-text").html($(sel).data("obj").name.replace(/-/g," "));
+                    $("#preview-text").html($(sel).data("obj").name.replace(/-/g," "));//Show hero name, replace -'s with a space
+                    //positional and portrait assignment
                     $(sel).css({
                         "top": ($(this).position().top - 46 + yOffset) + "px",
                         "left":($(this).position().left - (this.offsetWidth*0.9) + xOffset) + "px",
                         "background-image":"url("+$(this).data("obj").urlVertPortrait+")"
                     });
+                    //Grey out if selected
                     if($(this).hasClass("selected"))
                         $(sel).addClass("grey");
                 });
-            }
+            }//End of hero loop
             $("#preview-selector").on("click",function(){
+                //Allow selection of heroes while there are less then five
                 if(picks.length < 5){
                     var obj = $(this).data("obj");
-                    var dup = false;
+                    var dup = false; //is duplicate
                     for(var i = 0; i< picks.length;i++){
                         if(picks[i] === obj)
                             dup = true;
                     }
                     if(dup === false){
+                        //insert at the end of picks array
                         var pos = picks.length;
                         picks.push($(this).data("obj"));
+                        //Define as selected in DOM
                         $("#"+obj.name).addClass("selected");
                         var icon = $("#pick-icon-"+pos);
                         $(icon).data("obj",obj);
                         $(icon).data("pos",pos);
+                        //ajax call for comparison data on the chosen hero
                         $.ajax({
                             method:"GET",
                             url:"connect.php",
@@ -78,6 +98,7 @@ $(document).ready(function(){
                         $(icon).css({"background-image":"url("+obj.urlLargePortrait+")"});
                     }
                 }
+                //hide preview selector on selection, adds some responsiveness if nothing else.
                 $(this).hide();
             }).mouseleave(function(){
                 $(this).removeClass("grey");
@@ -99,12 +120,15 @@ $(document).ready(function(){
                     });
                     picks.splice(pos,1);
                     comparisons.splice(comparisons.indexOf(comps),1);
+                    // reconstruct visuals and data.
                     drawIcons();
                     calculateCounters();
                     $("#"+obj.name).removeClass("selected");
                 }
             });
             resize();
+            // Hides the hero table until all images have finished loading.
+            // Might applies to suggestion list as well.
             $('#hero-table').waitForImages(true).progress(function(loaded, count, success) {
                 console.log(loaded + ' of ' + count + ' images has ' + (success ? 'loaded' : 'failed to load') +  '.');
                 if(loaded + 1 === count){
