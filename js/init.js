@@ -9,6 +9,7 @@ var winRateTip = "Average win rate of the current picks against the hero.";
 var matchesTip = "Total number of match comparisons against the hero.";
 $(document).ready(function(){
     $("#preview-selector").hide();
+    $("#hero-table").hide();
     $.ajax({
         method:"GET",
         url:"connect.php",
@@ -19,7 +20,6 @@ $(document).ready(function(){
             var str = document.getElementById("str-portraits");
             var agi = document.getElementById("agi-portraits");
             var int = document.getElementById("int-portraits");
-            $(wrapper).hide();
             for(var i = 0; i < obj.length; i++){
                 var wrapper; 
                 obj[i].urlLargePortrait = obj[i].urlLargePortrait.replace("}","");
@@ -49,9 +49,6 @@ $(document).ready(function(){
                     });
                     if($(this).hasClass("selected"))
                         $(sel).addClass("grey");
-                })
-                .click(function(){
-                    /// FOR MOBILE
                 });
             }
             $("#preview-selector").on("click",function(){
@@ -89,7 +86,6 @@ $(document).ready(function(){
             .bind("mousewheel",function(){
                  $(this).hide();
             });
-            $(wrapper).show();
             $(".pick-icon").on("click",function(){
                 // remove hero from pick pool and truncate icons
                 if($(this).data("obj")){
@@ -109,6 +105,14 @@ $(document).ready(function(){
                 }
             });
             resize();
+            $('#hero-table').waitForImages(true).progress(function(loaded, count, success) {
+                console.log(loaded + ' of ' + count + ' images has ' + (success ? 'loaded' : 'failed to load') +  '.');
+                if(loaded + 1 === count){
+                    $('#hero-table').show();
+                    $('#loader-icon').hide();
+                    return;
+                }
+            });            
         },
         error:function(){
             console.log("failure");

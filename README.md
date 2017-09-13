@@ -1,6 +1,8 @@
-Meglofriend's Dota 2 Counter Pick Front End Website.
+#Meglofriend's Dota 2 Counter Pick Front End Website.
 
-For use, visit: Meglobot.com/CounterPick
+###For use, visit: Meglobot.com/CounterPick
+
+## Overview
 
 The applications enables you to enter a team composition and view which heroes match up the best against the chosen set. With this you are able to see the possible counters to based off Advantage percentage, a statistic developed by Dotabuff and average win rate.
 
@@ -8,6 +10,10 @@ The application uses php for socket connection to the application's server. The 
 
 The application itself is an example of responsive interface design and of a dynamic single page application.
 
-Check out Meglofriend at www.meglobot.com and www.twitter.com/meglofriend
+###Check out Meglofriend at www.meglobot.com and www.twitter.com/meglofriend
 
+#### Thanks to Alex Dickson for the excellent plugin
 
+waitForImages jQuery Plugin - v2.2.0 - 2017-02-20
+https://github.com/alexanderdickson/waitForImages
+Copyright (c) 2017 Alex Dickson; Licensed MIT 

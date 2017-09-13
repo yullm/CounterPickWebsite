@@ -16,6 +16,14 @@ font-family: 'Cinzel Decorative', cursive;
     overflow: hidden;
 }
 
+#loader-icon{
+    position: absolute;
+    color: white;
+    font-size: 36px;
+    left: 33%;
+    top: 50%
+}
+
 #selection,#suggestion{
     position: relative;
     display:inline-block;
@@ -462,9 +470,14 @@ font-family: 'Cinzel Decorative', cursive;
 }
 
 @media(orientation: landscape) and (max-width : 1199px){
+    #loader-icon{
+        left: 40%;
+    }
+    
     #selection{
         width:80%;
     }
+    
     #suggestion{
         width:20%;
     }
@@ -524,6 +537,12 @@ font-family: 'Cinzel Decorative', cursive;
 }
 
 @media(orientation: portrait) and (max-width : 1199px){
+    
+    #loader-icon{
+        left: 50%;
+        top: 42%
+    }
+    
     #selection,#suggestion{
         width: 100%;
     }
