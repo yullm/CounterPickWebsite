@@ -1,5 +1,6 @@
 /*
  *  Meglofriend's Dota 2 Counter Pick App || Init.js
+ *  Michael Yull
  */
 // Global variable init
 var heroes;
@@ -110,14 +111,17 @@ $(document).ready(function(){
             $(".pick-icon").on("click",function(){
                 // remove hero from pick pool and truncate icons
                 if($(this).data("obj")){
+                    //get the element that was clicked and its data
                     var obj = $(this).data("obj");
                     var pos = $(this).data("pos");
                     var comps = $(this).data("comps");
+                    //clear the element
                     $(this).removeData("obj");
                     $(this).removeData("pos");
                     $(this).css({
                         "background-image":"none"
                     });
+                    //splice the elements data from the lists so they're reordered appropriately
                     picks.splice(pos,1);
                     comparisons.splice(comparisons.indexOf(comps),1);
                     // reconstruct visuals and data.
@@ -142,6 +146,7 @@ $(document).ready(function(){
             console.log("failure");
         }
     });
+    //When suggestion div is horizontal, if scrolled upon, scroll horizontally.
     $('#suggestion-scroller').bind("mousewheel",function(e) {
         if($('#suggestion').width() > $('#suggestion').height()){
             
@@ -149,6 +154,7 @@ $(document).ready(function(){
             e.preventDefault();
         }
    });
+   //Hide and show menu buttons
    $("#menu-prompt-but").on("click",function(){
        $("#menu").show();
        $("#menu").animate({
@@ -172,6 +178,7 @@ $(document).ready(function(){
 });
 
 function calculateCounters(el,comps){
+    //if adding a new hero instead of removing.
     if(el){
         $(el).data("comps",comps);
         comparisons.push(comps);
@@ -200,10 +207,12 @@ function calculateCounters(el,comps){
                 compTotals[j].matches += comparisons[i][j].matches;
             }
         }
+        //Average out the data based off number of picks
         $.each(compTotals,function(index,heroComp){
             heroComp.advantage = heroComp.advantage/picks.length;
             heroComp.winRate = heroComp.winRate/picks.length;
         });
+        //sort based off our sorting variable
         compTotals.sort(function(a,b){
             switch(sortingColumn){
                 case 0:
@@ -217,8 +226,11 @@ function calculateCounters(el,comps){
                     break;
             }
         });
+        //empty container first
         $(container).empty();
+        //Return 15 counters || advanced functionality could be to make this an adjustable amount
         for(var i = 0; i < 15; i++){
+            //Check to see if the counter is a hero in the pick list
             var valid = true;
             $.each(picks,function(index,obj){
                 if(compTotals[i].heroName === obj.name.toLowerCase())
@@ -226,6 +238,7 @@ function calculateCounters(el,comps){
             });
             if(valid){
                 //console.log(compTotals[i].heroName + ", " + compTotals[i].advantage);
+                //add an item to the suggestion list with the hero's information.
                 var item = $("<div />",{class:"suggestion-list-item"});
                 var iconImg;
                 $.each(heroes,function(index,obj){
@@ -236,28 +249,35 @@ function calculateCounters(el,comps){
                 $(itemIcon).css({
                     "background-image":"url("+iconImg+")"
                 });
-                var iconHover = $("<div />",{class:"suggestion-icon-hover"});
-                
+                //icon hover is for when the list is minimized. 
+                //You can still see the advantage stat when hovering 
+                var iconHover = $("<div />",{class:"suggestion-icon-hover"});  
                 $(iconHover).html(compTotals[i].advantage.toFixed(2)+"%");
                 $(itemIcon).append(iconHover);
                 $(item).append(itemIcon);
+                //element lisiting the stats
                 var stats = $("<div />",{class:"suggestion-stats"});
+                //for each of the 3 stats: advantage, win rate, and matches
                 for(var j = 0; j < 3; j++){
                     var stat = $("<div />",{class:"stat"});
+                    //For each rank we have a title, a value, and bar for judging the worth of that value.
                     var ranking = $("<div />",{class:"rank-bar"});
                     var title = $("<div />",{class:"stat-title"});
                     var val = $("<div />",{class:"stat-value"});
                     var rankWidth = 0;
+                    //hovering tooltip to tell the user what the stat means
                     var tooltip = $("#tooltip");
                     $(title).hover(function(){
                         var offset = $(this).offset();
                         var text = $(this).html();
                         $(this).data("timer",setTimeout(function(){
+                            //show and position under the title
                             $(tooltip).show();
                             $(tooltip).css({
                                 "top": offset.top + 25 + "px",
                                 "left": offset.left - 100 + "px"
                             });
+                            //What tip to show based off the title
                             switch(text){
                                 case "Advantage:":
                                     $(tooltip).html(advantageTip);
@@ -271,13 +291,16 @@ function calculateCounters(el,comps){
                             }
                         },1000));
                     },function(){
+                        //hide the tooltip if the user stops hovering
                         clearTimeout($(this).data("timer"));
                         $(tooltip).hide();
                     });
+                    //Info for each stat
                     switch(j){
                         case 0:
                             $(title).html("Advantage:");
                             $(val).html(compTotals[i].advantage.toFixed(2)+"%");
+                            //evaluate as a percentage from 0 to 100
                             rankWidth = compTotals[i].advantage.toFixed(2)/7 * -100;
                             break;
                         case 1:
@@ -291,12 +314,15 @@ function calculateCounters(el,comps){
                             rankWidth = compTotals[i].matches/1000000 * 100;
                             break;
                     }
+                    //if the percentage is greater than 100 make it 100
                     if(rankWidth > 100){
                         rankWidth = 100;
                     }
+                    //apply the width
                     $(ranking).css({
                         "width": rankWidth + "%"
                     });
+                    //add a division line to the stat except to the first
                     if(j !== 0){
                         $(stat).css({
                             "border-top":"1px solid #888"
@@ -313,7 +339,7 @@ function calculateCounters(el,comps){
         }
     }
 }
-
+//function for redrawing the pick icons in order.
 function drawIcons(){
     for(var i = 0; i < 5; i++){
         var icon = $("#pick-icon-"+i);
@@ -336,16 +362,21 @@ $(window).resize(resize);
 function resize(){
     var firstHeight = $(".ability-divider").first().height();
     $.each($(".ability-divider"),function(){
-        //console.log($(value).height() + " " + index);
+        //zero it out so the parent resets its height 
         $(this).find(".ability-title").css({
             "height": "0px"
         });
+        //then set the height to the height of the parent
         $(this).find(".ability-title").css({
             "height":$(this).height()
         });
+        //get the text and the icon elements
         var text = $(this).find(".ability-text");
         var icon = $(this).find("image");
+        //width for this specific title
         var textWidth = text[0].getBBox().width/2 + 4;
+        //set the text to be aligned to the top if the first divider's height is above 500px
+        //else set it to be vertically centered to the divider
         if(firstHeight < 500){
             $(text).attr("y",$(this).height()/2 - 10);
             $(text).attr("transform","rotate(-90,"+$(text).attr("x")+","+($(this).height()/2 -10)+")");
@@ -356,6 +387,7 @@ function resize(){
             $(text).attr("transform","rotate(-90,"+$(text).attr("x")+","+textWidth+")");
             $(icon).attr("y",textWidth * 2);
         }
+        //make the line as long as the dividers height
         $(this).find("line").attr("y2",$(this).height() - 5);
     });
 }
@@ -363,7 +395,8 @@ function resize(){
 function initLogoBar(){
     createLogoRotation($("#buff-bar"),buffTimerIndex);
 }
-
+//Interval the rotates through the visisblity of all the children of an element
+//Goes off of and increments a global counter for the element
 function createLogoRotation(container,index){
     $.each($(container).children(),function(index, val){
         $(val).hide();
