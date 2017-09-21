@@ -13,13 +13,14 @@ var advantageTip = "Advantage the current picks have over the hero.";
 var winRateTip = "Average win rate of the current picks against the hero.";
 var matchesTip = "Total number of match comparisons against the hero.";
 $(document).ready(function(){
+    var localhost = window.location.href.toLowerCase().replace("/counterpick/",""); //For cors issues for localhost, and www. vs no www. issues
     $("#preview-selector").hide();
     $("#hero-table").hide();
     //ajax call to retrieve initial list of heroes
     $.ajax({
         method:"GET",
-        url:"connect.php",
-        data: {opMessage:JSON.stringify({opcode:0,body:""})},
+        url: localhost+"/counter/op",
+        data: {opcode:0,body:""},
         success:function(response){
             //Converting response to object
             var obj = JSON.parse(response);
@@ -89,8 +90,8 @@ $(document).ready(function(){
                         //ajax call for comparison data on the chosen hero
                         $.ajax({
                             method:"GET",
-                            url:"connect.php",
-                            data:{opMessage:JSON.stringify({opcode:2,body:obj.name})},
+                            url: localhost+"/counter/op",
+                            data:{opcode:2,body:obj.name},
                             success:function(response){
                                var comps = JSON.parse(response);
                                calculateCounters(icon,comps);
