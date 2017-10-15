@@ -131,7 +131,6 @@ $(document).ready(function(){
                     $("#"+obj.name).removeClass("selected");
                 }
             });
-            resize();
             // Hides the hero table until all images have finished loading.
             // Might applies to suggestion list as well.
             $('#hero-table').waitForImages(true).progress(function(loaded, count, success) {
@@ -139,6 +138,7 @@ $(document).ready(function(){
                 if(loaded + 1 === count){
                     $('#hero-table').show();
                     $('#loader-icon').hide();
+                    resize();
                     return;
                 }
             });            
